@@ -20,6 +20,26 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+app.use(
+  cors({
+    origin: [
+      "https://quiz-app-frontend-imu1j0xaq-prashins-projects-41222466.vercel.app",
+      "http://localhost:3000"
+    ],
+    credentials: true
+  })
+);
+
+app.use(helmet());
+
+const rateLimit = require("express-rate-limit");
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 10000,
+    max: 10000
+  })
+);
+
 app.post("/api/topics/select", auth, async (req, res) => {
   try {
     const { topics } = req.body;
