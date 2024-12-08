@@ -7,7 +7,6 @@ const questionsRoute = require("./routes/questions");
 const usersRoute = require("./routes/users");
 const User = require("./models/User");
 const auth = require("./middleware/auth");
-const cors = require("cors");
 const helmet = require("helmet");
 require("dotenv").config();
 
